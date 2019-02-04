@@ -1,0 +1,25 @@
+<div class="container">
+  
+  <div *ngIf="messaggio2" class="alert alert-primary" role="alert">
+        {{messaggio2}}
+  </div>
+  
+  <div *ngIf="messaggio" class="alert alert-primary" role="alert">
+    {{messaggio}}
+  </div>
+
+
+
+  <table class="table table-bordered mb-5 tabella">
+
+    <tr *ngFor="let riga of griglia;index as i">
+      <td *ngFor="let c of griglia[i]; index as j" (click)="makeMove(i,j)" class="cella">
+        <span *ngIf="c.valore=='O'"><i class="far fa-circle icona"></i></span>
+        <span *ngIf="c.valore=='X'"><i class="fas fa-times icona"></i></span>
+      </td>
+    </tr>
+    
+  </table>
+
+  <button class="btn btn-primary" (click)="initGame()">Reset</button>
+</div>

@@ -1,0 +1,10 @@
+.icona{
+    font-size:40px;
+}
+
+.cella{
+    height:80px;
+    width: 80px;
+    border:2px solid grey;
+    cursor:pointer;
+}
