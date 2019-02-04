@@ -67,7 +67,7 @@ export class GiocoComponent implements OnInit {
         this.cambiaGiocatore(); 
 
         console.log("MOSSA: "+this.mosse);
-        if(this.mosse==9){
+        if(this.mosse==9 && !this.finito){
           this.messaggio="Gioco finito! E' finita Pari.";
           this.messaggio2=undefined;
         }
@@ -165,7 +165,11 @@ export class GiocoComponent implements OnInit {
     if(this.giocatoreAttuale == this.giocatori[0]) this.giocatoreAttuale=this.giocatori[1];
     else this.giocatoreAttuale=this.giocatori[0];
 
-    if(!this.finito) this.messaggio2="Tocca al Giocatore: "+this.giocatoreAttuale;
+    if(!this.finito) {
+      this.messaggio2="Tocca al Giocatore: "+this.giocatoreAttuale;
+      this.messaggio=undefined;
+
+    }
   }
 
   vincita (){
