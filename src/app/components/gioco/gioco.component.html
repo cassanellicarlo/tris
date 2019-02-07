@@ -1,11 +1,14 @@
 <div class="container">
+  <label for="dimgriglia"><small>Inserisci la dimensione della griglia [N x N]</small></label>
+  
+  <div class="input-group mb-5">   
+    <input type="number" min="2" id="dimgriglia" class="form-control input-griglia" [(ngModel)]="dimensioneGriglia" placeholder="Dimensione Griglia">
+    <div class="input-group-append">
+      <button class="btn btn-primary" (click)="initGame()">Start Game</button>
+    </div>
+  </div>
 
-  <label for="dimgriglia">Inserisci la dimensione della griglia [N x N]</label>
-  <div class="input-group mb-3">
-    <input type="number" min="2" id="dimgriglia" class="form-control" [(ngModel)]="dimensioneGriglia" placeholder="Dimensione Griglia">
-  </div> 
-
-  <button class="btn btn-primary mb-5" (click)="initGame()">Start Game</button>
+  
   
   <div *ngIf="messaggio2" class="alert alert-primary" role="alert">
         {{messaggio2}}
@@ -17,7 +20,7 @@
 
 
 
-  <table class="table table-bordered mb-5 tabella">
+  <table class="table table-bordered mb-5 tabella text-center">
 
     <tr *ngFor="let riga of griglia;index as i">
       <td *ngFor="let c of griglia[i]; index as j" (click)="makeMove(i,j)" class="cella">

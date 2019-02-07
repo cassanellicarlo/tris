@@ -29,8 +29,6 @@ export class GiocoComponent implements OnInit {
   // Inizializzazione del gioco
   initGame (){
 
-    console.log(this.dimensioneGriglia);
-
     this.giocatoreAttuale = this.giocatori[0]; // Inizia il giocatore 1 ("X")
     this.messaggio2="Tocca al Giocatore: "+this.giocatoreAttuale;
     this.mosse=0;
@@ -44,8 +42,6 @@ export class GiocoComponent implements OnInit {
         this.griglia[i][j]=new Quadrato("",true);
       }
     }
-
-
 
   }
 
