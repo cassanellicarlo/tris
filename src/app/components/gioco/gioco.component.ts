@@ -8,12 +8,8 @@ import { Quadrato } from 'src/app/models/Quadrato';
 })
 export class GiocoComponent implements OnInit {
 
-  griglia = [ 
-    [null,null,null], 
-    [null,null,null],  
-    [null,null,null], 
-  ];
-
+  griglia = [];
+  dimensioneGriglia: number=3;
   giocatore1:string= "X";
   giocatore2:string = "O";
   giocatori = [this.giocatore1, this.giocatore2];
@@ -28,11 +24,12 @@ export class GiocoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initGame();
   }
 
   // Inizializzazione del gioco
   initGame (){
+
+    console.log(this.dimensioneGriglia);
 
     this.giocatoreAttuale = this.giocatori[0]; // Inizia il giocatore 1 ("X")
     this.messaggio2="Tocca al Giocatore: "+this.giocatoreAttuale;
@@ -41,8 +38,9 @@ export class GiocoComponent implements OnInit {
     this.finito=false;
 
     // Inizializzazione della matrice
-    for(let i=0;i<this.griglia.length;i++){
-      for(let j=0;j<this.griglia[i].length;j++){
+    for(let i=0;i<this.dimensioneGriglia;i++){
+      this.griglia[i]=[];
+      for(let j=0;j<this.dimensioneGriglia;j++){
         this.griglia[i][j]=new Quadrato("",true);
       }
     }
@@ -67,7 +65,7 @@ export class GiocoComponent implements OnInit {
         this.cambiaGiocatore(); 
 
         console.log("MOSSA: "+this.mosse);
-        if(this.mosse==9 && !this.finito){
+        if(this.mosse == (this.dimensioneGriglia*this.dimensioneGriglia) && !this.finito){
           this.messaggio="Gioco finito! E' finita Pari.";
           this.messaggio2=undefined;
         }
@@ -83,7 +81,7 @@ export class GiocoComponent implements OnInit {
     }
 
     else {
-      this.messaggio="Il gioco è finito! Clicca su Reset per ricominciare";
+      this.messaggio="Il gioco è finito! Clicca su Start Game per ricominciare";
       this.messaggio2=undefined;
     }
 
@@ -131,11 +129,12 @@ export class GiocoComponent implements OnInit {
   checkWinDiagonal (){
     
     const diagonale1 = [];
-    diagonale1.push(
-      this.griglia[0][0].valore,
-      this.griglia[1][1].valore,
-      this.griglia[2][2].valore
-    );
+    const diagonale2 = [];
+
+    for(let i=0;i<this.griglia.length;i++){
+      diagonale1.push(this.griglia[i][i].valore);
+      diagonale2.push(this.griglia[i][this.griglia.length-i]);
+    }
 
     const diagonale1Uguale = diagonale1.reduce ( (a,b) => a===b ? a : false);
 
@@ -143,13 +142,6 @@ export class GiocoComponent implements OnInit {
       console.log("Vincita diagonale 1 Giocatore:" +this.giocatoreAttuale);
       this.vincita();
     }
-
-    const diagonale2 = [];
-    diagonale2.push(
-      this.griglia[0][2].valore,
-      this.griglia[1][1].valore,
-      this.griglia[2][0].valore
-    );
 
     const diagonale2Uguale = diagonale2.reduce ( (a,b) => a===b ? a : false);
 
