@@ -29,6 +29,7 @@ export class GiocoComponent implements OnInit {
   // Inizializzazione del gioco
   initGame (){
 
+    this.griglia=[];
     this.giocatoreAttuale = this.giocatori[0]; // Inizia il giocatore 1 ("X")
     this.messaggio2="Tocca al Giocatore: "+this.giocatoreAttuale;
     this.mosse=0;

@@ -1,8 +1,8 @@
 <div class="container">
-  <label for="dimgriglia"><small>Inserisci la dimensione della griglia [N x N]</small></label>
+  <label for="dimgriglia"><small>Inserisci la dimensione della griglia e inizia a giocare!</small></label>
   
   <div class="input-group mb-5">   
-    <input type="number" min="2" id="dimgriglia" class="form-control input-griglia" [(ngModel)]="dimensioneGriglia" placeholder="Dimensione Griglia">
+    <input type="number" min="2" id="dimgriglia" class="form-control" [(ngModel)]="dimensioneGriglia" placeholder="Dimensione Griglia">
     <div class="input-group-append">
       <button class="btn btn-primary" (click)="initGame()">Start Game</button>
     </div>
